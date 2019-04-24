@@ -8,7 +8,39 @@
 
 int main(void)
 {
-    // Your code here 
+   FILE *file = fopen("text.txt", "r+");
+   fprintf(file, "Hello, file\n");
+    pid_t pid = fork() ;
+    if (pid == 0) {
+        printf("starting to read file within child process\n") ;
+        while(1) {
+            int i = fgetc(file);
+            if( feof(file) ) {
+                break ;
+            }
+            printf("%c", i);
+        }
+     
+        fprintf(file, "Inside the child process\n");
+        
+        fclose(file);
+    }
+    if ( pid > 0) {
+        printf("starting to read file within parent process\n") ;
+        while(1) {
+            int i = fgetc(file);
+            if( feof(file) ) {
+                break ;
+            }
+            printf("%c", i);
+        }
+        
+        fprintf(file, "Inside the parent process\n");
+        
+        fclose(file);
+    }
     
     return 0;
+    
+  
 }

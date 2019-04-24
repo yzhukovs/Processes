@@ -1,0 +1,5 @@
+Hello, file
+starting to read file within child process
+Inside the child process
+starting to read file within parent process
+Inside the parent process
