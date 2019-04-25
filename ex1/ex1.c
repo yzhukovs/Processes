@@ -8,7 +8,18 @@
 
 int main(void)
 {
-    // Your code here
-
+    int x = 12 ;
+    pid_t pid = fork() ;
+if (pid == 0) {
+    printf("x is %d in the child\n", x) ;
+    x = 100 ;
+    printf("x is changed to %d in the child process\n", x) ;
+}
+    if ( pid > 0) {
+        printf("x is %d in the parent\n", x) ;
+        x = 200 ;
+        printf("x is changed to %d in the parent process\n", x) ;
+    }
+    
     return 0;
 }
