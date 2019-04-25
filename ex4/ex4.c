@@ -10,7 +10,21 @@
 
 int main(void)
 {
-    // Your code here    
+ 
+           
+            pid_t pid = fork() ;
+            char *const envp[2] = {"STEPLIB=SASC.V6.LINKLIB", NULL};
+            if (pid == 0) {
+                //execle("/Applications/Utilities/Terminal.app", "newShell", NULL, envp);
+                execl("/bin/ls", "ls", NULL) ;
+                perror("exec");
+                exit(1);
+            } else {
+                wait(NULL);
+                printf("I am the parent my pid is %d\n", pid);
+            }
+        
+            return 0 ;
+        }
 
-    return 0;
-}
+
